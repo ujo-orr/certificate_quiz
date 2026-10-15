@@ -18,10 +18,8 @@ migrate_working_dir/
 *.iws
 .idea/
 
-# The .vscode folder contains launch configuration and tasks you configure in
-# VS Code which you may wish to be included in version control, so this line
-# is commented out by default.
-#.vscode/
+# 로컬 편집기 설정
+.vscode/
 
 # Flutter/Dart/Pub related
 **/doc/api/
@@ -46,3 +44,16 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+# 로컬 환경변수 및 인증 정보
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# 별도 경로에 생성한 Android 빌드 결과물
+*.apk
+*.aab

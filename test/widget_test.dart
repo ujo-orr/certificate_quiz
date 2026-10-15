@@ -1,30 +1,20 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
+import 'package:certificate_quiz/app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:certificate_quiz/main.dart';
-
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  for (final size in [const Size(360, 800), const Size(1280, 800)]) {
+    testWidgets('시작 화면 표시 및 레이아웃 확인 (${size.width.toInt()}px)', (tester) async {
+      tester.view.devicePixelRatio = 1;
+      tester.view.physicalSize = size;
+      addTearDown(tester.view.resetDevicePixelRatio);
+      addTearDown(tester.view.resetPhysicalSize);
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+      await tester.pumpWidget(const CertificateQuizApp());
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
-  });
+      expect(find.text('자격증 문제은행'), findsOneWidget);
+      expect(find.text('학습 화면 준비 중'), findsOneWidget);
+      expect(tester.takeException(), isNull);
+    });
+  }
 }
