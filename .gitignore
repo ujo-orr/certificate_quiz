@@ -53,6 +53,7 @@ app.*.map.json
 *.key
 *.p12
 *.pfx
+README.md
 
 # 별도 경로에 생성한 Android 빌드 결과물
 *.apk
